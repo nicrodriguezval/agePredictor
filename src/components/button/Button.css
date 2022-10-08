@@ -1,0 +1,16 @@
+.btn {
+	font-size: inherit;
+	margin: 5px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid green;
+	width: 100px;
+	height: 30px;
+	color: green;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	transform: scale(1.05);
+} 
