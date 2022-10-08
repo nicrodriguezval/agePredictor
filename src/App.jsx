@@ -17,11 +17,14 @@ function App() {
   const onsubmitInfo = (e) => {
     e.preventDefault()
 
+    const api = 'https://api.agify.io/'
+
     // regex to determine an array of the names introduced as input
     const names = name.split(/\,\s*/)
 
     let params = ''
 
+    // params formating
     if (names.length === 1) params = `name=${names[0]}`
     else
       names.forEach((value, index) => {
@@ -29,12 +32,6 @@ function App() {
       })
 
     if (country) params += `&country_id=${country}`
-
-    console.log(params)
-
-    const api = 'https://api.agify.io/'
-
-    console.log(`${api}?${params}`)
 
     fetch(`${api}?${params}`)
       .then((res) => res.json())
@@ -46,22 +43,21 @@ function App() {
 
   return (
     <main>
+      <h1 className="main-title u-bottom-margin-sm">Age predictor</h1>
       <label htmlFor="country-input">Country ID</label>
-      <div className="user-info">
         <Input
           id="country-input"
           placeholder="CO"
           onInputChange={onInputCountryChange}
         ></Input>
-      </div>
       <label htmlFor="name-input">Name(s)</label>
-      <div className="user-info">
+      <div className="user-info u-bottom-margin-sm">
         <Input
           id='name-input'
-          placeholder="Juan, carlos, ..."
+          placeholder="Juan, Carlos, ..."
           onInputChange={onInputNameChange}
         />
-        <h1>Age(s): {ages.join(', ')}</h1>
+        <h1 className="u-color-primary">Age(s): {ages.join(', ')}</h1>
       </div>
       <Button text="Get age(s)" handleClick={onsubmitInfo} />
     </main>
